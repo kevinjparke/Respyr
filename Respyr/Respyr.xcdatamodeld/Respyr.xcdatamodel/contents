@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="UserAccount" representedClassName="UserAccount" syncable="YES" codeGenerationType="class">
+        <attribute name="adminTC" optional="YES" attributeType="Transformable"/>
+        <attribute name="checklists" optional="YES" attributeType="Transformable"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="fullName" optional="YES" attributeType="String"/>
+        <attribute name="instructorTC" optional="YES" attributeType="Transformable"/>
+        <attribute name="instrutorID" optional="YES" attributeType="String"/>
+        <attribute name="memberSince" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="profileImage" optional="YES" attributeType="Binary"/>
+        <attribute name="sentRequests" optional="YES" attributeType="Transformable"/>
+        <attribute name="sessionIDs" optional="YES" attributeType="Transformable"/>
+        <attribute name="sessionReservations" optional="YES" attributeType="Transformable"/>
+        <attribute name="trainingCenters" optional="YES" attributeType="Transformable"/>
+        <attribute name="userID" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="UserAccount" positionX="-63" positionY="-18" width="128" height="224"/>
+    </elements>
+</model>
