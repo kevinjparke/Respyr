@@ -34,6 +34,7 @@
 		16B17CC5270DD2DA002B15DE /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B17CC4270DD2DA002B15DE /* UserViewModel.swift */; };
 		16B17CC7270DDCB2002B15DE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B17CC6270DDCB2002B15DE /* ProfileView.swift */; };
 		16B17CCA270F36E1002B15DE /* MainGradientButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B17CC9270F36E1002B15DE /* MainGradientButtonView.swift */; };
+		16F7E49027207B3A00CE6AB2 /* CoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7E48F27207B3A00CE6AB2 /* CoreDataViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		16B17CC4270DD2DA002B15DE /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		16B17CC6270DDCB2002B15DE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		16B17CC9270F36E1002B15DE /* MainGradientButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGradientButtonView.swift; sourceTree = "<group>"; };
+		16F7E48F27207B3A00CE6AB2 /* CoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				16B17CC4270DD2DA002B15DE /* UserViewModel.swift */,
+				16F7E48F27207B3A00CE6AB2 /* CoreDataViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				166B0BA72707BCD0003616AB /* UserAuth.swift in Sources */,
 				1652925F270643FA004CC38E /* Persistence.swift in Sources */,
 				164EBC34270B546F00F0EB81 /* Extension.swift in Sources */,
+				16F7E49027207B3A00CE6AB2 /* CoreDataViewModel.swift in Sources */,
 				16529258270643F6004CC38E /* SignupView.swift in Sources */,
 				16B17CCA270F36E1002B15DE /* MainGradientButtonView.swift in Sources */,
 				1679E88C27190A0700F9F246 /* FormTextFieldView.swift in Sources */,

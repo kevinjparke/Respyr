@@ -10,19 +10,22 @@ import Firebase
 
 @main
 struct RespyrApp: App {
-    let persistenceController = PersistenceController.shared
+//    let persistenceController = PersistenceController.shared
     let userViewModel: UserViewModel
+    let coreDataViewModel: CoreDataViewModel
     
     init() {
         Firebase.FirebaseApp.configure()
         userViewModel = UserViewModel()
+        coreDataViewModel = CoreDataViewModel()
     }
 
     var body: some Scene {
         WindowGroup {
             SignupView()
                 .environmentObject(userViewModel)
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(coreDataViewModel)
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
