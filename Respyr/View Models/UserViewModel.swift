@@ -65,6 +65,9 @@ class UserViewModel: ObservableObject {
     }
     
     func signIn() {
+        //Automatically sign in once there is a user found in Core Data?
+        //How will we handle multiple users using the same app?
+        
         self.authRef.signIn(withEmail: email, password: password) { auth, error in
             guard error == nil else {
                 self.alertTitle = "Uh-oh!"
@@ -122,6 +125,9 @@ class UserViewModel: ObservableObject {
         
         do {
             let _ =  try self.db.collection("users").document(authRef.currentUser?.uid ?? "").setData(from: userDocument)
+            
+            //Add user to core data here?
+            
         } catch let error {
             self.alertTitle = "Trouble adding user details"
             self.alertMessage = error.localizedDescription

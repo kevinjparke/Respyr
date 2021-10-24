@@ -56,6 +56,10 @@ class CoreDataViewModel: ObservableObject {
         }
     }
     
+}
+
+//MARK: - Update training centers
+extension CoreDataViewModel {
     func addToTrainingCenter(_ id: String) {
         let trainingCenter = TrainingCenterData(context: container.viewContext)
         trainingCenter.id = id
@@ -67,6 +71,16 @@ class CoreDataViewModel: ObservableObject {
         self.saveData()
     }
     
+    func removeFromTrainingCenter(_ data: TrainingCenterData) {
+        if !savedUserEntity.isEmpty {
+            savedUserEntity.first!.removeFromTrainingCenters(data)
+        }
+        self.saveData()
+    }
+}
+
+//MARK: - Update Session IDs
+extension CoreDataViewModel {
     func addToSessionID(_ id: String) {
         let sessionID = SessionIDs(context: container.viewContext)
         sessionID.id = id
@@ -78,6 +92,16 @@ class CoreDataViewModel: ObservableObject {
         self.saveData()
     }
     
+    func removeFromSessionIDs(_ data: SessionIDs){
+        if !savedUserEntity.isEmpty {
+            savedUserEntity.first!.removeFromSessionIDs(data)
+        }
+        self.saveData()
+    }
+}
+
+//MARK: - Update sent requests
+extension CoreDataViewModel {
     func addToSentRequests(_ id: String) {
         let sentRequest = SentRequests(context: container.viewContext)
         sentRequest.id = id
@@ -89,6 +113,16 @@ class CoreDataViewModel: ObservableObject {
         self.saveData()
     }
     
+    func removeFromSentRequests(_ data: SentRequests) {
+        if !savedUserEntity.isEmpty {
+            savedUserEntity.first!.removeFromSentRequest(data)
+        }
+        self.saveData()
+    }
+}
+
+//MARK: - Update adminTC
+extension CoreDataViewModel {
     func addToAdminTC(_ id: String) {
         let adminTC = AdminTC(context: container.viewContext)
         adminTC.id = id
@@ -98,8 +132,18 @@ class CoreDataViewModel: ObservableObject {
         }
         self.saveData()
     }
-    
-    func addToInstructorTC(_ id: String){
+
+    func removeFromAdminTC(_ data: AdminTC) {
+        if !savedUserEntity.isEmpty {
+            savedUserEntity.first!.removeFromAdminTC(data)
+        }
+        self.saveData()
+    }
+}
+
+//MARK: - Update instructorTC
+extension CoreDataViewModel {
+    func addToInstructorTC(_ id: String) {
         let instructorTC = InstructorTC(context: container.viewContext)
         instructorTC.id = id
         
@@ -109,6 +153,17 @@ class CoreDataViewModel: ObservableObject {
         self.saveData()
     }
     
+    func removeFromInstructorTC(_ data: InstructorTC) {
+        if !savedUserEntity.isEmpty {
+            savedUserEntity.first!.removeFromInstructorTC(data)
+            
+            self.saveData()
+        }
+    }
+}
+
+//MARK: - Update sessionReservations
+extension CoreDataViewModel {
     func addToSessionReservations(_ id: String) {
         let sessionReservation = SessionReservations(context: container.viewContext)
         sessionReservation.id = id
@@ -119,14 +174,32 @@ class CoreDataViewModel: ObservableObject {
         self.saveData()
     }
     
+    func removeFromSessionReservation(_ data: SessionReservations) {
+        if !savedUserEntity.isEmpty {
+            savedUserEntity.first!.removeFromSessionReservations(data)
+            
+            self.saveData()
+        }
+    }
+}
+
+//MARK: - Update checklists
+extension CoreDataViewModel {
     func addToChecklists(_ id: String) {
-        let checklists = Checklists(context: container.viewContext)
-        checklists.id = id
+        let checklist = Checklists(context: container.viewContext)
+        checklist.id = id
         
         if !savedUserEntity.isEmpty {
-            savedUserEntity.first!.addToChecklists(checklists)
+            savedUserEntity.first!.addToChecklists(checklist)
+            self.saveData()
         }
-        self.saveData()
+        
     }
     
+    func removeFromChecklist(_ data: Checklists) {
+        if !savedUserEntity.isEmpty {
+            savedUserEntity.first!.removeFromChecklists(data)
+            self.saveData()
+        }
+    }
 }

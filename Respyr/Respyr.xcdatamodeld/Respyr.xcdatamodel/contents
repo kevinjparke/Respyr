@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="AdminTC" representedClassName="AdminTC" syncable="YES">
+    <entity name="AdminTC" representedClassName="AdminTC" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <relationship name="userAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserAccount" inverseName="adminTC" inverseEntity="UserAccount"/>
     </entity>
-    <entity name="Checklists" representedClassName="Checklists" syncable="YES">
+    <entity name="Checklists" representedClassName="Checklists" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <relationship name="userAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserAccount" inverseName="checklists" inverseEntity="UserAccount"/>
     </entity>
-    <entity name="InstructorTC" representedClassName="InstructorTC" syncable="YES">
+    <entity name="InstructorTC" representedClassName="InstructorTC" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <relationship name="userAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserAccount" inverseName="instructorTC" inverseEntity="UserAccount"/>
     </entity>
-    <entity name="SentRequests" representedClassName="SentRequests" syncable="YES">
+    <entity name="SentRequests" representedClassName="SentRequests" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <relationship name="userAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserAccount" inverseName="sentRequest" inverseEntity="UserAccount"/>
     </entity>
-    <entity name="SessionIDs" representedClassName="SessionIDs" syncable="YES">
+    <entity name="SessionIDs" representedClassName="SessionIDs" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <relationship name="userAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserAccount" inverseName="sessionIDs" inverseEntity="UserAccount"/>
     </entity>
-    <entity name="SessionReservations" representedClassName="SessionReservations" syncable="YES">
+    <entity name="SessionReservations" representedClassName="SessionReservations" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <relationship name="userAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserAccount" inverseName="sessionReservations" inverseEntity="UserAccount"/>
     </entity>
-    <entity name="TrainingCenterData" representedClassName="TrainingCenterData" syncable="YES">
+    <entity name="TrainingCenterData" representedClassName="TrainingCenterData" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <relationship name="userAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserAccount" inverseName="trainingCenters" inverseEntity="UserAccount"/>
     </entity>
-    <entity name="UserAccount" representedClassName="UserAccount" syncable="YES">
+    <entity name="UserAccount" representedClassName="UserAccount" syncable="YES" codeGenerationType="class">
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="fullName" optional="YES" attributeType="String"/>
         <attribute name="instrutorID" optional="YES" attributeType="String"/>

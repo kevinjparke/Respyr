@@ -34,7 +34,7 @@ struct PersistenceController {
                 */
                 print("Unresolved error \(error), \(error.userInfo)")
             } else {
-                print("Store has been loaded \(storeDescription.url)")
+                print("Store has been loaded \(String(describing: storeDescription.url))")
             }
         })
     }

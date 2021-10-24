@@ -30,22 +30,6 @@
 		1672C2CB271CE5FC00C051F9 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 1672C2CA271CE5FC00C051F9 /* FirebaseFirestoreSwift-Beta */; };
 		1679E88A2718F8EC00F9F246 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1679E8892718F8EC00F9F246 /* SettingsView.swift */; };
 		1679E88C27190A0700F9F246 /* FormTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1679E88B27190A0700F9F246 /* FormTextFieldView.swift */; };
-		168280CC272393FA001EF181 /* SessionIDs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280BC272393FA001EF181 /* SessionIDs+CoreDataClass.swift */; };
-		168280CD272393FA001EF181 /* SessionIDs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280BD272393FA001EF181 /* SessionIDs+CoreDataProperties.swift */; };
-		168280CE272393FA001EF181 /* Checklists+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280BE272393FA001EF181 /* Checklists+CoreDataClass.swift */; };
-		168280CF272393FA001EF181 /* Checklists+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280BF272393FA001EF181 /* Checklists+CoreDataProperties.swift */; };
-		168280D0272393FA001EF181 /* InstructorTC+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280C0272393FA001EF181 /* InstructorTC+CoreDataClass.swift */; };
-		168280D1272393FA001EF181 /* InstructorTC+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280C1272393FA001EF181 /* InstructorTC+CoreDataProperties.swift */; };
-		168280D2272393FA001EF181 /* AdminTC+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280C2272393FA001EF181 /* AdminTC+CoreDataClass.swift */; };
-		168280D3272393FA001EF181 /* AdminTC+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280C3272393FA001EF181 /* AdminTC+CoreDataProperties.swift */; };
-		168280D4272393FA001EF181 /* SentRequests+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280C4272393FA001EF181 /* SentRequests+CoreDataClass.swift */; };
-		168280D5272393FA001EF181 /* SentRequests+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280C5272393FA001EF181 /* SentRequests+CoreDataProperties.swift */; };
-		168280D6272393FA001EF181 /* SessionReservations+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280C6272393FA001EF181 /* SessionReservations+CoreDataClass.swift */; };
-		168280D7272393FA001EF181 /* SessionReservations+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280C7272393FA001EF181 /* SessionReservations+CoreDataProperties.swift */; };
-		168280D8272393FA001EF181 /* TrainingCenterData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280C8272393FA001EF181 /* TrainingCenterData+CoreDataClass.swift */; };
-		168280D9272393FA001EF181 /* TrainingCenterData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280C9272393FA001EF181 /* TrainingCenterData+CoreDataProperties.swift */; };
-		168280DA272393FA001EF181 /* UserAccount+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280CA272393FA001EF181 /* UserAccount+CoreDataClass.swift */; };
-		168280DB272393FA001EF181 /* UserAccount+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168280CB272393FA001EF181 /* UserAccount+CoreDataProperties.swift */; };
 		1684E4F72719C49B00A816DD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1684E4F62719C49B00A816DD /* ImagePicker.swift */; };
 		16B17CC5270DD2DA002B15DE /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B17CC4270DD2DA002B15DE /* UserViewModel.swift */; };
 		16B17CC7270DDCB2002B15DE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B17CC6270DDCB2002B15DE /* ProfileView.swift */; };
@@ -75,22 +59,6 @@
 		166EFE1527124CB700F91B00 /* TrainingCenterListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCenterListRow.swift; sourceTree = "<group>"; };
 		1679E8892718F8EC00F9F246 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1679E88B27190A0700F9F246 /* FormTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextFieldView.swift; sourceTree = "<group>"; };
-		168280BC272393FA001EF181 /* SessionIDs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionIDs+CoreDataClass.swift"; sourceTree = "<group>"; };
-		168280BD272393FA001EF181 /* SessionIDs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionIDs+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		168280BE272393FA001EF181 /* Checklists+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Checklists+CoreDataClass.swift"; sourceTree = "<group>"; };
-		168280BF272393FA001EF181 /* Checklists+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Checklists+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		168280C0272393FA001EF181 /* InstructorTC+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InstructorTC+CoreDataClass.swift"; sourceTree = "<group>"; };
-		168280C1272393FA001EF181 /* InstructorTC+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InstructorTC+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		168280C2272393FA001EF181 /* AdminTC+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdminTC+CoreDataClass.swift"; sourceTree = "<group>"; };
-		168280C3272393FA001EF181 /* AdminTC+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdminTC+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		168280C4272393FA001EF181 /* SentRequests+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SentRequests+CoreDataClass.swift"; sourceTree = "<group>"; };
-		168280C5272393FA001EF181 /* SentRequests+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SentRequests+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		168280C6272393FA001EF181 /* SessionReservations+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionReservations+CoreDataClass.swift"; sourceTree = "<group>"; };
-		168280C7272393FA001EF181 /* SessionReservations+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionReservations+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		168280C8272393FA001EF181 /* TrainingCenterData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainingCenterData+CoreDataClass.swift"; sourceTree = "<group>"; };
-		168280C9272393FA001EF181 /* TrainingCenterData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainingCenterData+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		168280CA272393FA001EF181 /* UserAccount+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserAccount+CoreDataClass.swift"; sourceTree = "<group>"; };
-		168280CB272393FA001EF181 /* UserAccount+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserAccount+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1684E4F62719C49B00A816DD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		16B17CC4270DD2DA002B15DE /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		16B17CC6270DDCB2002B15DE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -268,22 +236,6 @@
 		16F7E49127234B3100CE6AB2 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				168280BC272393FA001EF181 /* SessionIDs+CoreDataClass.swift */,
-				168280BD272393FA001EF181 /* SessionIDs+CoreDataProperties.swift */,
-				168280BE272393FA001EF181 /* Checklists+CoreDataClass.swift */,
-				168280BF272393FA001EF181 /* Checklists+CoreDataProperties.swift */,
-				168280C0272393FA001EF181 /* InstructorTC+CoreDataClass.swift */,
-				168280C1272393FA001EF181 /* InstructorTC+CoreDataProperties.swift */,
-				168280C2272393FA001EF181 /* AdminTC+CoreDataClass.swift */,
-				168280C3272393FA001EF181 /* AdminTC+CoreDataProperties.swift */,
-				168280C4272393FA001EF181 /* SentRequests+CoreDataClass.swift */,
-				168280C5272393FA001EF181 /* SentRequests+CoreDataProperties.swift */,
-				168280C6272393FA001EF181 /* SessionReservations+CoreDataClass.swift */,
-				168280C7272393FA001EF181 /* SessionReservations+CoreDataProperties.swift */,
-				168280C8272393FA001EF181 /* TrainingCenterData+CoreDataClass.swift */,
-				168280C9272393FA001EF181 /* TrainingCenterData+CoreDataProperties.swift */,
-				168280CA272393FA001EF181 /* UserAccount+CoreDataClass.swift */,
-				168280CB272393FA001EF181 /* UserAccount+CoreDataProperties.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -367,44 +319,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				168280DB272393FA001EF181 /* UserAccount+CoreDataProperties.swift in Sources */,
 				164EBC36270BBE2100F0EB81 /* VisualEffectBlur.swift in Sources */,
 				1652926E270646AF004CC38E /* TrainingSession.swift in Sources */,
 				164FC1B0270BFF61004D83AC /* TextFieldView.swift in Sources */,
-				168280D6272393FA001EF181 /* SessionReservations+CoreDataClass.swift in Sources */,
-				168280D1272393FA001EF181 /* InstructorTC+CoreDataProperties.swift in Sources */,
-				168280D2272393FA001EF181 /* AdminTC+CoreDataClass.swift in Sources */,
 				1684E4F72719C49B00A816DD /* ImagePicker.swift in Sources */,
 				166EFE1627124CB700F91B00 /* TrainingCenterListRow.swift in Sources */,
-				168280D9272393FA001EF181 /* TrainingCenterData+CoreDataProperties.swift in Sources */,
 				1652926C270645EB004CC38E /* TrainingCenter.swift in Sources */,
 				16529262270643FA004CC38E /* Respyr.xcdatamodeld in Sources */,
 				16B17CC5270DD2DA002B15DE /* UserViewModel.swift in Sources */,
-				168280D7272393FA001EF181 /* SessionReservations+CoreDataProperties.swift in Sources */,
 				16529270270649C8004CC38E /* AdultChecklist.swift in Sources */,
 				16B17CC7270DDCB2002B15DE /* ProfileView.swift in Sources */,
-				168280CE272393FA001EF181 /* Checklists+CoreDataClass.swift in Sources */,
 				166B0BA72707BCD0003616AB /* UserAuth.swift in Sources */,
-				168280CC272393FA001EF181 /* SessionIDs+CoreDataClass.swift in Sources */,
 				1652925F270643FA004CC38E /* Persistence.swift in Sources */,
-				168280CD272393FA001EF181 /* SessionIDs+CoreDataProperties.swift in Sources */,
-				168280D5272393FA001EF181 /* SentRequests+CoreDataProperties.swift in Sources */,
 				164EBC34270B546F00F0EB81 /* Extension.swift in Sources */,
 				16F7E49027207B3A00CE6AB2 /* CoreDataViewModel.swift in Sources */,
-				168280D8272393FA001EF181 /* TrainingCenterData+CoreDataClass.swift in Sources */,
 				16529258270643F6004CC38E /* SignupView.swift in Sources */,
 				16B17CCA270F36E1002B15DE /* MainGradientButtonView.swift in Sources */,
 				1679E88C27190A0700F9F246 /* FormTextFieldView.swift in Sources */,
 				16529272270650BF004CC38E /* InfantChecklist.swift in Sources */,
 				1652926A27064511004CC38E /* User.swift in Sources */,
-				168280D0272393FA001EF181 /* InstructorTC+CoreDataClass.swift in Sources */,
 				16529256270643F6004CC38E /* RespyrApp.swift in Sources */,
-				168280DA272393FA001EF181 /* UserAccount+CoreDataClass.swift in Sources */,
-				168280D3272393FA001EF181 /* AdminTC+CoreDataProperties.swift in Sources */,
 				166EFE13270F5B7600F91B00 /* SignInWithAppleButton.swift in Sources */,
-				168280CF272393FA001EF181 /* Checklists+CoreDataProperties.swift in Sources */,
 				1679E88A2718F8EC00F9F246 /* SettingsView.swift in Sources */,
-				168280D4272393FA001EF181 /* SentRequests+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
