@@ -34,6 +34,7 @@
 		16B17CC5270DD2DA002B15DE /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B17CC4270DD2DA002B15DE /* UserViewModel.swift */; };
 		16B17CC7270DDCB2002B15DE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B17CC6270DDCB2002B15DE /* ProfileView.swift */; };
 		16B17CCA270F36E1002B15DE /* MainGradientButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B17CC9270F36E1002B15DE /* MainGradientButtonView.swift */; };
+		16C97AB92728986B00BE3E42 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C97AB82728986B00BE3E42 /* AlertViewModel.swift */; };
 		16F7E49027207B3A00CE6AB2 /* CoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7E48F27207B3A00CE6AB2 /* CoreDataViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		16B17CC4270DD2DA002B15DE /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		16B17CC6270DDCB2002B15DE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		16B17CC9270F36E1002B15DE /* MainGradientButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGradientButtonView.swift; sourceTree = "<group>"; };
+		16C97AB82728986B00BE3E42 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
 		16F7E48F27207B3A00CE6AB2 /* CoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +184,7 @@
 			children = (
 				16B17CC4270DD2DA002B15DE /* UserViewModel.swift */,
 				16F7E48F27207B3A00CE6AB2 /* CoreDataViewModel.swift */,
+				16C97AB82728986B00BE3E42 /* AlertViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				166EFE1627124CB700F91B00 /* TrainingCenterListRow.swift in Sources */,
 				1652926C270645EB004CC38E /* TrainingCenter.swift in Sources */,
 				16529262270643FA004CC38E /* Respyr.xcdatamodeld in Sources */,
+				16C97AB92728986B00BE3E42 /* AlertViewModel.swift in Sources */,
 				16B17CC5270DD2DA002B15DE /* UserViewModel.swift in Sources */,
 				16529270270649C8004CC38E /* AdultChecklist.swift in Sources */,
 				16B17CC7270DDCB2002B15DE /* ProfileView.swift in Sources */,

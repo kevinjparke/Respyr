@@ -22,18 +22,49 @@ struct User: Identifiable, Codable {
     var sessionReservations: [String]
     var checklists: [String]
     
-//    init() {
-//        self.firstName = ""
-//        self.lastName = ""
-//        self.email = ""
-//        self.instructorID = ""
-//        self.memberSince = ""
-//        self.sessionIDs = []
-//        self.trainingCenters = []
-//        self.sessionIDs = []
-//        self.adminTC = []
-//        self.instructorTC = []
-//        self.sessionReservations = []
-//        self.checklists = []
-//    }
+    
+    //Initializer for new users
+    init(userID: String, fullName: String, email: String) {
+        self.id = userID
+        self.fullName = fullName
+        self.email = email
+        self.instructorID = ""
+        self.memberSince = ""
+        self.trainingCenters = []
+        self.sessionIDs = []
+        self.sentRequests = []
+        self.adminTC = []
+        self.instructorTC = []
+        self.sessionReservations = []
+        self.checklists = []
+    }
+    
+    init(userID: String, fullName: String, email: String, instructorID: String, memberSince: String, sessionIDs: [String], trainingCenters: [String], sentRequests: [String], adminTC: [String], instructorTC: [String], sessionReservations: [String], checklists: [String]) {
+        self.id = userID
+        self.fullName = ""
+        self.email = email
+        self.instructorID = ""
+        self.memberSince = ""
+        self.trainingCenters = []
+        self.sessionIDs = []
+        self.sentRequests = []
+        self.adminTC = []
+        self.instructorTC = []
+        self.sessionReservations = []
+        self.checklists = []
+    }
+    
+    init() {
+        self.fullName = ""
+        self.email = ""
+        self.instructorID = ""
+        self.memberSince = ""
+        self.trainingCenters = []
+        self.sessionIDs = []
+        self.sentRequests = []
+        self.adminTC = []
+        self.instructorTC = []
+        self.sessionReservations = []
+        self.checklists = []
+    }
 }

@@ -15,7 +15,6 @@ class UserViewModel: ObservableObject {
     //User document attributes
     @Published var firstName: String = ""
     @Published var lastName: String = ""
-    
     @Published var profileImage: UIImage?
     @Published var fullName: String = ""
     @Published var email: String = ""
@@ -40,6 +39,8 @@ class UserViewModel: ObservableObject {
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
     @Published var alertToggle: Bool = false
+    
+    //Instantiated in fetchUser()
     @Published var userDocument: User?
     
     public var userTitle: String {
@@ -51,7 +52,7 @@ class UserViewModel: ObservableObject {
         return "No affiliated training centers yet"
     }
     
-    init(){ self.listen() }
+    init() { self.listen() }
     
     func listen() {
         authRef.addStateDidChangeListener { auth, user in
@@ -121,7 +122,7 @@ class UserViewModel: ObservableObject {
     }
     
     func createUser() {
-        self.userDocument = User (fullName: fullName, email: email, instructorID: instructorID, memberSince: memberSince, trainingCenters: trainingCenters, sessionIDs: sessionIDs, sentRequests: sentRequests, adminTC: adminTC, instructorTC: instructorTC, sessionReservations: sessionReservations, checklists: checklists)
+        self.userDocument = User (userID: self.currentUserID, fullName: fullName, email: email, instructorID: instructorID, memberSince: memberSince, sessionIDs: trainingCenters, trainingCenters: sessionIDs, sentRequests: sentRequests, adminTC: adminTC, instructorTC: instructorTC, sessionReservations: sessionReservations, checklists: checklists)
         
         do {
             let _ =  try self.db.collection("users").document(authRef.currentUser?.uid ?? "").setData(from: userDocument)
@@ -136,7 +137,7 @@ class UserViewModel: ObservableObject {
     }
     
     func fetchUser() {
-        let docRef = self.db.collection("users").document(authRef.currentUser?.uid ?? "")
+        let docRef = self.db.collection("users").document(authRef.currentUser!.uid )
         docRef.getDocument { (document, err) in
             let result = Result{
                 try? document?.data(as: User.self)
@@ -144,10 +145,15 @@ class UserViewModel: ObservableObject {
             
             switch result {
                 case .success(let user):
+//                    self.fullName = user!.fullName
                     if let user = user {
-                        self.userDocument = user
+                        self.fullName = user.fullName
+                        self.email = user.email
+                        self.instructorID = user.instructorID
+                        self.memberSince = user.memberSince
+                        self.trainingCenters = user.trainingCenters
                     } else {
-                        print("Something went wrong")
+                        print("Couldn't fetch user")
                     }
                 case .failure(let error):
                     self.alertTitle = "Trouble fetching user"

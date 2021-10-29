@@ -76,7 +76,7 @@ struct SettingsView: View {
                             .opacity(0.5)
                     }
                     .font(.caption2)
-                    FormTextFieldView(text: $instructorID, placeholder: "Instructor ID", icon: "lanyardcard.fill")
+                    FormTextFieldView(text: $userViewModel.instructorID, placeholder: "Instructor ID", icon: "lanyardcard.fill")
                 }
                 
                 Button(action: {print("Save profile settings")}) {

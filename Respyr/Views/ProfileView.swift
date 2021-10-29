@@ -10,13 +10,14 @@ import CoreData
 import FirebaseAuth
 
 struct ProfileView: View {
+    //Environment variables
     @EnvironmentObject var userViewModel: UserViewModel
     @Environment(\.presentationMode) var presentationMode
     
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \UserAccount.memberSince, ascending: true)], predicate: NSPredicate(format: "userID == %@", Auth.auth().currentUser!.uid), animation: .default) private var savedAccounts: FetchedResults<UserAccount>
+    //Core Data
     @State private var currentAccount: UserAccount?
     
+    //View states
     @State private var showSettingsView: Bool  = false
     
     var body: some View {
@@ -129,6 +130,9 @@ struct ProfileView: View {
                 
             }
             .padding(.horizontal)
+            .onAppear {
+                userViewModel.fetchUser()
+            }
         }
         .sheet(isPresented: $showSettingsView) {
             SettingsView()

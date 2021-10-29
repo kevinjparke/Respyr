@@ -10,6 +10,7 @@ import CoreData
 
 struct SignupView: View {
     @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var coreDataViewModel: CoreDataViewModel
     
     @State private var signupToggle: Bool = true
     @State private var showProfileToggle: Bool  = false
@@ -47,7 +48,18 @@ struct SignupView: View {
                     }
                     .onAppear {
                         userViewModel.authRef.addStateDidChangeListener { auth, user in
-                            self.showProfileToggle.toggle()
+                            if let currentUser = user {
+                                if coreDataViewModel.savedUserEntity.count == 0 {
+                                    //Add data to core data
+                                    let userDataToSave = User(userID: currentUser.uid, fullName: currentUser.displayName ?? "",  email: currentUser.email ?? "")
+                                    //Save user to core data
+                                    coreDataViewModel.addUser(user: userDataToSave)
+                                    DispatchQueue.main.async {
+                                        self.showProfileToggle.toggle()
+                                    }
+                                }
+                                self.showProfileToggle.toggle()
+                            }
                         }
                     }
                     

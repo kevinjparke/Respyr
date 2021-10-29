@@ -38,4 +38,8 @@ struct PersistenceController {
             }
         })
     }
+    
+    func save() throws {
+        try container.viewContext.save()
+    }
 }
