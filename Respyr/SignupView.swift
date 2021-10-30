@@ -57,8 +57,9 @@ struct SignupView: View {
                                     DispatchQueue.main.async {
                                         self.showProfileToggle.toggle()
                                     }
+                                } else {
+                                    self.showProfileToggle.toggle()
                                 }
-                                self.showProfileToggle.toggle()
                             }
                         }
                     }

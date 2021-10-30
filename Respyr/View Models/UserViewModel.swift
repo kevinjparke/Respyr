@@ -40,6 +40,9 @@ class UserViewModel: ObservableObject {
     @Published var alertMessage: String = ""
     @Published var alertToggle: Bool = false
     
+    //OtherViewModels
+    @Published var tc: TrainingCenterViewModel = TrainingCenterViewModel()
+    
     //Instantiated in fetchUser()
     @Published var userDocument: User?
     
@@ -161,5 +164,13 @@ class UserViewModel: ObservableObject {
                     self.alertToggle.toggle()
                 }
         }
+    }
+}
+
+//MARK: - Updating training centers
+extension UserViewModel {
+    func fetchTrainingCenters() -> [TrainingCenter]{
+        tc.fetchTrainingCenters(with: currentUserID)
+        return tc.userTrainingCenters
     }
 }

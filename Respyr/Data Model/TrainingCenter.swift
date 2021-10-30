@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TrainingCenter: Identifiable, Decodable {
+struct TrainingCenter: Identifiable, Codable {
     var id: String
     var title: String
     var location: String
