@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TrainingCenterListRow: View {
+    var trainingCenter: TrainingCenter
+    
     var body: some View {
         VStack(alignment:.leading){
             //Divider
@@ -17,7 +19,7 @@ struct TrainingCenterListRow: View {
             HStack{
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
-                        Text("St. George's University")
+                        Text(trainingCenter.title)
                             .font(.headline).bold()
                         
                         Text("ADMIN")
@@ -29,9 +31,8 @@ struct TrainingCenterListRow: View {
                             .opacity(0.7)
                             
                     }
-                    Text("True Blue, St. George, Grenada")
+                    Text(trainingCenter.location)
                         .font(.footnote)
-//                        .opacity(0.7)
                 }
                 
                 Spacer()
@@ -45,8 +46,8 @@ struct TrainingCenterListRow: View {
     }
 }
 
-struct TrainingCenterListRow_Previews: PreviewProvider {
-    static var previews: some View {
-        TrainingCenterListRow()
-    }
-}
+//struct TrainingCenterListRow_Previews: PreviewProvider {
+//    static var previews: some View {
+////        TrainingCenterListRow()
+//    }
+//}

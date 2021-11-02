@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		16212D51272CB1BE00FB922E /* TrainingCenterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16212D50272CB1BE00FB922E /* TrainingCenterViewModel.swift */; };
+		16212D53272D0DCB00FB922E /* FindTrainingCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16212D52272D0DCB00FB922E /* FindTrainingCenterView.swift */; };
 		164EBC34270B546F00F0EB81 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164EBC33270B546F00F0EB81 /* Extension.swift */; };
 		164EBC36270BBE2100F0EB81 /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164EBC35270BBE2100F0EB81 /* VisualEffectBlur.swift */; };
 		164FC1B0270BFF61004D83AC /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164FC1AF270BFF61004D83AC /* TextFieldView.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		16212D50272CB1BE00FB922E /* TrainingCenterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCenterViewModel.swift; sourceTree = "<group>"; };
+		16212D52272D0DCB00FB922E /* FindTrainingCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTrainingCenterView.swift; sourceTree = "<group>"; };
 		164EBC33270B546F00F0EB81 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		164EBC35270BBE2100F0EB81 /* VisualEffectBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
 		164FC1AF270BFF61004D83AC /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				16B17CC6270DDCB2002B15DE /* ProfileView.swift */,
 				166EFE12270F5B7600F91B00 /* SignInWithAppleButton.swift */,
 				1679E8892718F8EC00F9F246 /* SettingsView.swift */,
+				16212D52272D0DCB00FB922E /* FindTrainingCenterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 			files = (
 				164EBC36270BBE2100F0EB81 /* VisualEffectBlur.swift in Sources */,
 				1652926E270646AF004CC38E /* TrainingSession.swift in Sources */,
+				16212D53272D0DCB00FB922E /* FindTrainingCenterView.swift in Sources */,
 				164FC1B0270BFF61004D83AC /* TextFieldView.swift in Sources */,
 				1684E4F72719C49B00A816DD /* ImagePicker.swift in Sources */,
 				166EFE1627124CB700F91B00 /* TrainingCenterListRow.swift in Sources */,

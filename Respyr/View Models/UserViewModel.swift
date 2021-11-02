@@ -170,7 +170,7 @@ class UserViewModel: ObservableObject {
 //MARK: - Updating training centers
 extension UserViewModel {
     func fetchTrainingCenters() -> [TrainingCenter]{
-        tc.fetchTrainingCenters(with: currentUserID)
+        tc.fetchUserTrainingCenters(with: currentUserID)
         return tc.userTrainingCenters
     }
 }

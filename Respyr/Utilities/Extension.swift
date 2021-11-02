@@ -25,6 +25,5 @@ extension Color {
     static public var gradient1Color2 = Color("gradient1ColorSet2")
     static public var textFieldBackground = Color("textFieldBackground")
     static public var themeRed = Color("themeRed")
-//    static public var gradient2Color1 = Color("gradient2Color1")
-//    static public var gradient2Color2 = Color("gradient2Color2")
+    static public var themeForeground = Color("foreground")
 }

@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct TrainingCenter: Identifiable, Codable {
-    var id: String
+struct TrainingCenter: Identifiable, Codable, Hashable {
+    @DocumentID var id: String?
     var title: String
     var location: String
     var administrators: [String]

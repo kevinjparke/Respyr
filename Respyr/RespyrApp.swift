@@ -13,11 +13,13 @@ struct RespyrApp: App {
 //    let persistenceController = PersistenceController.shared
     let userViewModel: UserViewModel
     let coreDataViewModel: CoreDataViewModel
+    let trainingCenterViewModel: TrainingCenterViewModel
     
     init() {
         Firebase.FirebaseApp.configure()
         userViewModel = UserViewModel()
         coreDataViewModel = CoreDataViewModel()
+        trainingCenterViewModel = TrainingCenterViewModel()
     }
 
     var body: some Scene {
@@ -25,7 +27,7 @@ struct RespyrApp: App {
             SignupView()
                 .environmentObject(userViewModel)
                 .environmentObject(coreDataViewModel)
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(trainingCenterViewModel)
         }
     }
 }

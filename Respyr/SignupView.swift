@@ -20,6 +20,8 @@ struct SignupView: View {
     
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
+    static private var tc = TrainingCenterViewModel()
+    
     var body: some View {
         ZStack {
             

@@ -26,10 +26,6 @@ struct SettingsView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack(alignment: .center, spacing: 16) {
-                Text("Settings")
-                    .font(.largeTitle).bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
                 //Select profile picture button
                 Button(action: {
                     self.showImagePicker.toggle()
