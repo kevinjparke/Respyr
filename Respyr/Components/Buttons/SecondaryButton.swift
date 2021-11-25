@@ -1,15 +1,16 @@
 //
-//  MainButton.swift
+//  SecondaryButton.swift
 //  Respyr
 //
-//  Created by Kevin Parke on 10/7/21.
+//  Created by Kevin Parke on 11/2/21.
 //
 
 import SwiftUI
 
-struct MainGradientButtonView: View {
+struct SecondaryButton: View {
     var text: String
-    var action: () -> Void
+    var action: ()->()
+    
     
     var body: some View {
         Button(action: action) {
@@ -20,7 +21,7 @@ struct MainGradientButtonView: View {
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .frame(height: 52)
-        .background(LinearGradient(gradient: Gradient(colors: [Color.gradient1Color2, Color.gradient1Color1]), startPoint: .top, endPoint: .bottom))
+        .background(Color.gradient1Color1)
         .overlay(RoundedRectangle(cornerRadius: 16.0, style: .continuous)
                     .stroke(Color.white, lineWidth: 3)
                     .blendMode(.overlay)
@@ -29,3 +30,9 @@ struct MainGradientButtonView: View {
         .shadow(color: Color.black.opacity(0.25), radius: 40, x: 0, y: 20)
     }
 }
+
+//struct SecondaryButton_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SecondaryButton()
+//    }
+//}

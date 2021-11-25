@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		16212D51272CB1BE00FB922E /* TrainingCenterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16212D50272CB1BE00FB922E /* TrainingCenterViewModel.swift */; };
 		16212D53272D0DCB00FB922E /* FindTrainingCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16212D52272D0DCB00FB922E /* FindTrainingCenterView.swift */; };
+		16212D55273188F600FB922E /* TrainingCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16212D54273188F600FB922E /* TrainingCenterView.swift */; };
+		16212D572731CD0700FB922E /* FormRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16212D562731CD0700FB922E /* FormRowView.swift */; };
 		164EBC34270B546F00F0EB81 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164EBC33270B546F00F0EB81 /* Extension.swift */; };
 		164EBC36270BBE2100F0EB81 /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164EBC35270BBE2100F0EB81 /* VisualEffectBlur.swift */; };
 		164FC1B0270BFF61004D83AC /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164FC1AF270BFF61004D83AC /* TextFieldView.swift */; };
@@ -23,8 +25,10 @@
 		1652926E270646AF004CC38E /* TrainingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1652926D270646AF004CC38E /* TrainingSession.swift */; };
 		16529270270649C8004CC38E /* AdultChecklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1652926F270649C8004CC38E /* AdultChecklist.swift */; };
 		16529272270650BF004CC38E /* InfantChecklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16529271270650BF004CC38E /* InfantChecklist.swift */; };
+		165849E32732023700C58969 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165849E22732023700C58969 /* SecondaryButton.swift */; };
 		166B0B9C2707B849003616AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 166B0B9B2707B849003616AB /* GoogleService-Info.plist */; };
 		166B0BA72707BCD0003616AB /* UserAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166B0BA62707BCD0003616AB /* UserAuth.swift */; };
+		166BE92E2744BDC200157E84 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166BE92D2744BDC200157E84 /* SessionStore.swift */; };
 		166EFE13270F5B7600F91B00 /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EFE12270F5B7600F91B00 /* SignInWithAppleButton.swift */; };
 		166EFE1627124CB700F91B00 /* TrainingCenterListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EFE1527124CB700F91B00 /* TrainingCenterListRow.swift */; };
 		1672C2C7271CE5E900C051F9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1672C2C6271CE5E900C051F9 /* FirebaseAuth */; };
@@ -43,6 +47,8 @@
 /* Begin PBXFileReference section */
 		16212D50272CB1BE00FB922E /* TrainingCenterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCenterViewModel.swift; sourceTree = "<group>"; };
 		16212D52272D0DCB00FB922E /* FindTrainingCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTrainingCenterView.swift; sourceTree = "<group>"; };
+		16212D54273188F600FB922E /* TrainingCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCenterView.swift; sourceTree = "<group>"; };
+		16212D562731CD0700FB922E /* FormRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRowView.swift; sourceTree = "<group>"; };
 		164EBC33270B546F00F0EB81 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		164EBC35270BBE2100F0EB81 /* VisualEffectBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
 		164FC1AF270BFF61004D83AC /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
@@ -58,8 +64,10 @@
 		1652926D270646AF004CC38E /* TrainingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSession.swift; sourceTree = "<group>"; };
 		1652926F270649C8004CC38E /* AdultChecklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultChecklist.swift; sourceTree = "<group>"; };
 		16529271270650BF004CC38E /* InfantChecklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfantChecklist.swift; sourceTree = "<group>"; };
+		165849E22732023700C58969 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		166B0B9B2707B849003616AB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		166B0BA62707BCD0003616AB /* UserAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuth.swift; sourceTree = "<group>"; };
+		166BE92D2744BDC200157E84 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		166EFE12270F5B7600F91B00 /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
 		166EFE1527124CB700F91B00 /* TrainingCenterListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCenterListRow.swift; sourceTree = "<group>"; };
 		1679E8892718F8EC00F9F246 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -180,6 +188,7 @@
 				166EFE12270F5B7600F91B00 /* SignInWithAppleButton.swift */,
 				1679E8892718F8EC00F9F246 /* SettingsView.swift */,
 				16212D52272D0DCB00FB922E /* FindTrainingCenterView.swift */,
+				16212D54273188F600FB922E /* TrainingCenterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,6 +216,7 @@
 		166B0BA42707BC70003616AB /* Firestore */ = {
 			isa = PBXGroup;
 			children = (
+				166BE92D2744BDC200157E84 /* SessionStore.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -230,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				166EFE1527124CB700F91B00 /* TrainingCenterListRow.swift */,
+				16212D562731CD0700FB922E /* FormRowView.swift */,
 			);
 			path = "Table Rows";
 			sourceTree = "<group>";
@@ -238,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				16B17CC9270F36E1002B15DE /* MainGradientButtonView.swift */,
+				165849E22732023700C58969 /* SecondaryButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -330,11 +342,13 @@
 			files = (
 				164EBC36270BBE2100F0EB81 /* VisualEffectBlur.swift in Sources */,
 				1652926E270646AF004CC38E /* TrainingSession.swift in Sources */,
+				166BE92E2744BDC200157E84 /* SessionStore.swift in Sources */,
 				16212D53272D0DCB00FB922E /* FindTrainingCenterView.swift in Sources */,
 				164FC1B0270BFF61004D83AC /* TextFieldView.swift in Sources */,
 				1684E4F72719C49B00A816DD /* ImagePicker.swift in Sources */,
 				166EFE1627124CB700F91B00 /* TrainingCenterListRow.swift in Sources */,
 				1652926C270645EB004CC38E /* TrainingCenter.swift in Sources */,
+				16212D55273188F600FB922E /* TrainingCenterView.swift in Sources */,
 				16529262270643FA004CC38E /* Respyr.xcdatamodeld in Sources */,
 				16C97AB92728986B00BE3E42 /* AlertViewModel.swift in Sources */,
 				16B17CC5270DD2DA002B15DE /* UserViewModel.swift in Sources */,
@@ -351,8 +365,10 @@
 				16529272270650BF004CC38E /* InfantChecklist.swift in Sources */,
 				1652926A27064511004CC38E /* User.swift in Sources */,
 				16529256270643F6004CC38E /* RespyrApp.swift in Sources */,
+				165849E32732023700C58969 /* SecondaryButton.swift in Sources */,
 				166EFE13270F5B7600F91B00 /* SignInWithAppleButton.swift in Sources */,
 				1679E88A2718F8EC00F9F246 /* SettingsView.swift in Sources */,
+				16212D572731CD0700FB922E /* FormRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TrainingCenterListRow: View {
     var trainingCenter: TrainingCenter
+    var currentUserID: String
     
     var body: some View {
         VStack(alignment:.leading){
@@ -22,17 +23,21 @@ struct TrainingCenterListRow: View {
                         Text(trainingCenter.title)
                             .font(.headline).bold()
                         
-                        Text("ADMIN")
-                            .padding(4)
-                            .font(.caption2)
-                            .foregroundColor(Color.white)
-                            .background(Color.gray)
-                            .clipShape(Capsule())
-                            .opacity(0.7)
                             
                     }
                     Text(trainingCenter.location)
                         .font(.footnote)
+                }
+                .foregroundColor(.primary)
+                
+                if isAdmin() {
+                    Text("ADMIN")
+                        .padding(4)
+                        .font(.caption2)
+                        .foregroundColor(Color.white)
+                        .background(Color.gray)
+                        .clipShape(Capsule())
+                        .opacity(0.7)
                 }
                 
                 Spacer()
@@ -43,6 +48,15 @@ struct TrainingCenterListRow: View {
                 
             }
         }
+    }
+    
+    func isAdmin() -> Bool {
+        for admin in trainingCenter.administrators {
+            if currentUserID == admin {
+                return true
+            }
+        }
+        return false
     }
 }
 

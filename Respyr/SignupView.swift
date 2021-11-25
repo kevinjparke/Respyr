@@ -20,13 +20,10 @@ struct SignupView: View {
     
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
-    static private var tc = TrainingCenterViewModel()
-    
     var body: some View {
         ZStack {
             
-            //Background here
-            
+            //Background
             Image(colorScheme == .light ? "Background1" : "Background2")
                 .resizable()
                 .ignoresSafeArea()

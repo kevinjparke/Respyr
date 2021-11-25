@@ -24,6 +24,9 @@ struct ProfileView: View {
         
         NavigationView {
             ZStack {
+                Color.themeBackground
+                    .edgesIgnoringSafeArea(.all)
+                
                 Image("Background3")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -73,35 +76,22 @@ struct ProfileView: View {
                             }
                         }
                         
-                        Button(action: {
+                        SecondaryButton(text: "Sign out") {
                             self.userViewModel.signOut()
                             DispatchQueue.main.async {
 
                                 self.presentationMode.wrappedValue.dismiss()
                             }
-                        }) {
-                            Text("Sign out")
-                                .font(.body).bold()
-                                .foregroundColor(.white)
                         }
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .frame(height: 52)
-                        .background(Color.gradient1Color1)
-                        .overlay(RoundedRectangle(cornerRadius: 16.0, style: .continuous)
-                                    .stroke(Color.white, lineWidth: 3)
-                                    .blendMode(.overlay)
-                        )
-                        .cornerRadius(16.0)
-                        .shadow(color: Color.black.opacity(0.25), radius: 40, x: 0, y: 20)
                         
                     }
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 30, style: .continuous)
                             .stroke(Color.white.opacity(0.5), lineWidth: 1).blendMode(.overlay)
-                            .background(Color.themeBackground.opacity(0.5))
+                            .background(Color.themeBackground.opacity(0.2))
                             .background(VisualEffectBlur(blurStyle: .systemThinMaterial))
-                            .shadow(color: Color.black.opacity(0.5), radius: 60, x: 0, y: 30)
+                            .shadow(color: Color.black.opacity(0.2), radius: 60, x: 0, y: 30)
                     )
                     .cornerRadius(30)
                     
@@ -109,16 +99,12 @@ struct ProfileView: View {
                         Text("My Training Centers")
                             .font(.title2).bold()
                         
-    //                    TrainingCenterListRow()
-    //                    TrainingCenterListRow()
-    //                    TrainingCenterListRow()
-    //                    TrainingCenterListRow()
-    //                    TrainingCenterListRow()
-                        
                         //Find training center button
                         NavigationLink(destination: FindTrainingCenterView()) {
                             Text("Find training center")
+                                .font(.body).bold()
                                 .foregroundColor(.white)
+                                .frame(maxWidth: .infinity, alignment: .center)
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
                         .frame(height: 52)
@@ -129,7 +115,6 @@ struct ProfileView: View {
                         )
                         .cornerRadius(16.0)
                         .shadow(color: Color.black.opacity(0.25), radius: 40, x: 0, y: 20)
-                        
                     }
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -148,7 +133,8 @@ struct ProfileView: View {
                 .padding(.horizontal)
                 .padding(.top, 60)
                 .onAppear {
-                    userViewModel.fetchUser()
+                    userViewModel.test_fetchUser()
+                    userViewModel.test_fetchAllUsers()
                 }
             }
             .sheet(isPresented: $showSettingsView) {

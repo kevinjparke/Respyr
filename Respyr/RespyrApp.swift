@@ -14,12 +14,14 @@ struct RespyrApp: App {
     let userViewModel: UserViewModel
     let coreDataViewModel: CoreDataViewModel
     let trainingCenterViewModel: TrainingCenterViewModel
+    let sessionStore: SessionStore
     
     init() {
         Firebase.FirebaseApp.configure()
         userViewModel = UserViewModel()
         coreDataViewModel = CoreDataViewModel()
-        trainingCenterViewModel = TrainingCenterViewModel()
+        sessionStore = SessionStore()
+        trainingCenterViewModel = TrainingCenterViewModel(sessionStore: sessionStore)
     }
 
     var body: some Scene {

@@ -16,6 +16,7 @@ struct SettingsView: View {
     @State private var instructorID: String = ""
     
     @EnvironmentObject var userViewModel: UserViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     @State private var showImagePicker = false
     @State private var inputImage: UIImage?
@@ -75,7 +76,10 @@ struct SettingsView: View {
                     FormTextFieldView(text: $userViewModel.instructorID, placeholder: "Instructor ID", icon: "lanyardcard.fill")
                 }
                 
-                Button(action: {print("Save profile settings")}) {
+                Button(action: {
+                    self.userViewModel.updateUser()
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
                     Text("Save")
                         .font(.body).bold()
                         .foregroundColor(.white)
