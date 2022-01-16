@@ -9,14 +9,18 @@ import SwiftUI
 
 struct TrainingCenterListRow: View {
     var trainingCenter: TrainingCenter
+    var isFirstIndex: Bool
     var currentUserID: String
     
     var body: some View {
         VStack(alignment:.leading){
             //Divider
-            Rectangle()
-                .frame(height: 1)
-                .opacity(0.2)
+            if !isFirstIndex {
+                Rectangle()
+                    .frame(height: 1)
+                    .opacity(0.2)
+            }
+            
             HStack{
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
@@ -44,7 +48,7 @@ struct TrainingCenterListRow: View {
                 
                 Image(systemName: "chevron.right")
                     .font(.system(size: 25))
-                    .blendMode(.overlay)
+                    .opacity(0.7)
                 
             }
         }

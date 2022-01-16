@@ -41,11 +41,11 @@ struct FindTrainingCenterView: View {
                     FormTextFieldView(text: $searchKey, placeholder: "Search", icon: "magnifyingglass.circle.fill")
                     
                     //List on Training Centers
-                    ForEach(self.trainingCenterViewModel.allTrainingCenters) {tc in
-                        NavigationLink(destination: TrainingCenterView(trainingCenter: tc)) {
-                            TrainingCenterListRow(trainingCenter: tc, currentUserID: userViewModel.authRef.currentUser!.uid)
-                        }
-                    }
+//                    ForEach(self.trainingCenterViewModel.allTrainingCenters) {tc in
+//                        NavigationLink(destination: TrainingCenterView(trainingCenter: tc)) {
+//                            TrainingCenterListRow(trainingCenter: tc, currentUserID: userViewModel.authRef.currentUser!.uid)
+//                        }
+//                    }
                 }
                 .padding()
             }

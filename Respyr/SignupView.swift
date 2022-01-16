@@ -45,23 +45,24 @@ struct SignupView: View {
                     MainGradientButtonView(text: signupToggle ? "Sign up" : "Sign in") {
                         signupToggle ? userViewModel.signUp() : userViewModel.signIn()
                     }
-                    .onAppear {
-                        userViewModel.authRef.addStateDidChangeListener { auth, user in
-                            if let currentUser = user {
-                                if coreDataViewModel.savedUserEntity.count == 0 {
-                                    //Add data to core data
-                                    let userDataToSave = User(userID: currentUser.uid, fullName: currentUser.displayName ?? "",  email: currentUser.email ?? "")
-                                    //Save user to core data
-                                    coreDataViewModel.addUser(user: userDataToSave)
-                                    DispatchQueue.main.async {
-                                        self.showProfileToggle.toggle()
-                                    }
-                                } else {
-                                    self.showProfileToggle.toggle()
-                                }
-                            }
-                        }
-                    }
+                    .colorScheme(.dark)
+//                    .onAppear {
+//                        userViewModel.authRef.addStateDidChangeListener { auth, user in
+//                            if let currentUser = user {
+//                                if coreDataViewModel.savedUserEntity.count == 0 {
+//                                    //Add data to core data
+//                                    let userDataToSave = User(id: currentUser.uid,  email: currentUser.email ?? "")
+//                                    //Save user to core data
+//                                    coreDataViewModel.addUser(user: userDataToSave)
+//                                    DispatchQueue.main.async {
+//                                        self.showProfileToggle.toggle()
+//                                    }
+//                                } else {
+//                                    self.showProfileToggle.toggle()
+//                                }
+//                            }
+//                        }
+//                    }
                     
                     Rectangle()
                         .frame(height: 1).opacity(0.1)
@@ -128,15 +129,15 @@ struct SignupView: View {
                 axis: (x: 0.0, y: 1.0, z: 0.0)
             )
             .background(
-                RoundedRectangle(cornerRadius: 30, style: .continuous)
+                RoundedRectangle(cornerRadius: 30)
                     .stroke(Color.white.opacity(0.5), lineWidth: 1).blendMode(.overlay)
                     .background(Color.themeBackground.opacity(0.5))
                     .background(VisualEffectBlur(blurStyle: .systemThinMaterial))
                     .shadow(color: Color.black.opacity(0.5), radius: 60, x: 0, y: 30)
             )
-            .fullScreenCover(isPresented: $showProfileToggle) {
-                ProfileView()
-            }
+//            .fullScreenCover(isPresented: $showProfileToggle) {
+//                ProfileView()
+//            }
             .alert(isPresented: $userViewModel.alertToggle) {
                 Alert(title: Text(userViewModel.alertTitle), message: Text(userViewModel.alertMessage), dismissButton: .cancel())
             }

@@ -9,13 +9,16 @@ import Foundation
 import FirebaseFirestoreSwift
 
 enum TrainingSessionType: String {
-    case BLSProvider
-    case BLSProviderRecertification
-    case HeartSaverFirstAid
-    case PALSProvider
-    case PALSProviderRecertification
-    case ACLSProvider
-    case ACLSProviderRecertification
+    case BLSProvider = "Basic Life Support Provider"
+    case BLSProviderRecertification = "Basic Life Support Provider Recertification"
+    case BLSProviderInstructor = "Basic Life Support Instructor"
+    case HeartSaverFirstAid = "Heart Saver First Aid"
+    case PALSProvider = "Pediatric Advanced Life Support Provider"
+    case PALSProviderRecertification = "Pediatric Advanced Life Support Provider Recertification"
+    case PALSProviderInstructor = "Pediatric Advanced Life Support Instructor"
+    case ACLSProvider = "Advance Cardio Life Support Provider"
+    case ACLSProviderInstructor = "Advance Cardio Life Support Instructor"
+    case ACLSProviderRecertification = "Advance Cardio Life Support Provider Recertification"
 }
 
 struct TrainingSession: Identifiable, Decodable {

@@ -10,26 +10,40 @@ import Firebase
 
 @main
 struct RespyrApp: App {
-//    let persistenceController = PersistenceController.shared
+    let sessionStore: SessionStore 
     let userViewModel: UserViewModel
     let coreDataViewModel: CoreDataViewModel
     let trainingCenterViewModel: TrainingCenterViewModel
-    let sessionStore: SessionStore
+    let alertManager: AlertViewModel
     
     init() {
         Firebase.FirebaseApp.configure()
-        userViewModel = UserViewModel()
+        sessionStore = SessionStore.shared
+        userViewModel = UserViewModel(sessionStore: sessionStore)
         coreDataViewModel = CoreDataViewModel()
-        sessionStore = SessionStore()
+        alertManager = AlertViewModel()
         trainingCenterViewModel = TrainingCenterViewModel(sessionStore: sessionStore)
     }
 
     var body: some Scene {
         WindowGroup {
-            SignupView()
+            ContentView()
+                .environmentObject(sessionStore)
                 .environmentObject(userViewModel)
                 .environmentObject(coreDataViewModel)
                 .environmentObject(trainingCenterViewModel)
+            
+//            if sessionStore.auth.isValidated {
+//                ProfileView()
+//                    .environmentObject(userViewModel)
+//                    .environmentObject(coreDataViewModel)
+//                    .environmentObject(trainingCenterViewModel)
+//            } else {
+//                SignupView()
+//                    .environmentObject(userViewModel)
+//                    .environmentObject(coreDataViewModel)
+//                    .environmentObject(trainingCenterViewModel)
+//            }
         }
     }
 }

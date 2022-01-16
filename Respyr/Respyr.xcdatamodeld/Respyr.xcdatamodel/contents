@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="AdminTC" representedClassName="AdminTC" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <relationship name="userAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserAccount" inverseName="adminTC" inverseEntity="UserAccount"/>
@@ -30,8 +30,9 @@
     </entity>
     <entity name="UserAccount" representedClassName="UserAccount" syncable="YES" codeGenerationType="class">
         <attribute name="email" optional="YES" attributeType="String"/>
-        <attribute name="fullName" optional="YES" attributeType="String"/>
+        <attribute name="firstName" optional="YES" attributeType="String"/>
         <attribute name="instructorID" optional="YES" attributeType="String"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
         <attribute name="memberSince" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="profileImage" optional="YES" attributeType="Binary"/>
         <attribute name="userID" optional="YES" attributeType="String"/>
@@ -51,6 +52,6 @@
         <element name="SessionIDs" positionX="251.1975708007812" positionY="25.7752685546875" width="128" height="73"/>
         <element name="SessionReservations" positionX="251.8729248046875" positionY="95.62249755859375" width="128" height="73"/>
         <element name="TrainingCenterData" positionX="260.779296875" positionY="174.5455322265625" width="128" height="73"/>
-        <element name="UserAccount" positionX="-31.2174072265625" positionY="-249.2080078125" width="128" height="224"/>
+        <element name="UserAccount" positionX="-31.2174072265625" positionY="-249.2080078125" width="128" height="239"/>
     </elements>
 </model>

@@ -121,7 +121,7 @@ class TrainingCenterViewModel: ObservableObject {
             .sink { completion in
                 print(completion)
             } receiveValue: { user in
-                self.admin = user.fullName
+                self.admin = "\(user.firstName) \(user.lastName)"
             }
             .store(in: &cancellables)
 

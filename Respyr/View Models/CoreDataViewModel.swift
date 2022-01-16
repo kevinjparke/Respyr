@@ -57,7 +57,8 @@ class CoreDataViewModel: ObservableObject {
         //Create a user
         let newUser = UserAccount(context: container.viewContext)
         newUser.userID = user.id
-        newUser.fullName = user.fullName
+        newUser.firstName = user.firstName
+        newUser.lastName = user.lastName
         newUser.email = user.email
         newUser.instructorID = user.instructorID
         newUser.memberSince = Date()

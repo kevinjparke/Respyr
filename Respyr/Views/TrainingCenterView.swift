@@ -50,13 +50,13 @@ struct TrainingCenterView: View {
                 
                 //Description
                 VStack(alignment: .leading, spacing: 16) {
-                    FormRowView(label: "Administrator", text: trainingCenterViewModel.admin)
+                    FormLabelView(label: "Administrator", text: trainingCenterViewModel.admin)
                     
-                    FormRowView(label: "AHA Training Center ID", text: trainingCenter.trainingCenterID)
+                    FormLabelView(label: "AHA Training Center ID", text: trainingCenter.trainingCenterID)
                     
-                    FormRowView(label: "Sessions Conducted", text: "\(trainingCenter.sessions.count)")
+                    FormLabelView(label: "Sessions Conducted", text: "\(trainingCenter.sessions.count)")
                     
-                    FormRowView(label: "Students", text: "\(trainingCenter.students.count)")
+                    FormLabelView(label: "Students", text: "\(trainingCenter.students.count)")
                     
                     Text("Member since \(trainingCenter.membershipDate)")
                         .font(.caption)
@@ -81,36 +81,36 @@ struct TrainingCenterView: View {
                 
                 //TODO: Fix invalid document error
                 SecondaryButton(text: isPendingRequest ? "Cancel Request" : "Send Request"){
-                    if isInstructor && !isPendingRequest{
-                        //Add training center to list of user instructor training centers
-                        userViewModel.sentInstructorRequest.append(trainingCenter.id!)
-                        
-                        //Update user requests on Firestore and on Core Data
-                        userViewModel.updateUser()
-                        
-                        //Add user id to list of training center instructors on Firestore and Core Data
-                        trainingCenterViewModel.createTrainingCenterRequest(userID: userViewModel.currentUserID, trainingCenterID: trainingCenter.id!, isInstructor: true)
-                    } else if !isPendingRequest  {
-                        //Add training center to list of student training centers
-                        userViewModel.trainingCenters.append(trainingCenter.id!)
-                        
-                        //Update user requests on Firestore and on Core Data
-                        userViewModel.updateUser()
-                        
-                        //Update training center to include student request
-                        trainingCenterViewModel.createTrainingCenterRequest(userID: userViewModel.currentUserID, trainingCenterID: trainingCenter.id!, isInstructor: false)
-                    }
-                    
-                    if isPendingRequest {
-                        //Ask user if they would like to cancel their request
-//                        self.alertTitle
-                    }
-                    
-                    //Disable instructor toggle and present an alert with the changed state
-                    self.isPendingRequest.toggle()
-                    self.alertTitle = "Request sent"
-                    self.alertMessage = "Something"
-                    self.alertToggle.toggle()
+//                    if isInstructor && !isPendingRequest{
+//                        //Add training center to list of user instructor training centers
+//                        userViewModel.sentInstructorRequest.append(trainingCenter.id!)
+//                        
+//                        //Update user requests on Firestore and on Core Data
+//                        userViewModel.updateUser()
+//                        
+//                        //Add user id to list of training center instructors on Firestore and Core Data
+//                        trainingCenterViewModel.createTrainingCenterRequest(userID: userViewModel.currentUserID, trainingCenterID: trainingCenter.id!, isInstructor: true)
+//                    } else if !isPendingRequest  {
+//                        //Add training center to list of student training centers
+//                        userViewModel.trainingCenters.append(trainingCenter.id!)
+//                        
+//                        //Update user requests on Firestore and on Core Data
+//                        userViewModel.updateUser()
+//                        
+//                        //Update training center to include student request
+//                        trainingCenterViewModel.createTrainingCenterRequest(userID: userViewModel.currentUserID, trainingCenterID: trainingCenter.id!, isInstructor: false)
+//                    }
+//                    
+//                    if isPendingRequest {
+//                        //Ask user if they would like to cancel their request
+////                        self.alertTitle
+//                    }
+//                    
+//                    //Disable instructor toggle and present an alert with the changed state
+//                    self.isPendingRequest.toggle()
+//                    self.alertTitle = "Request sent"
+//                    self.alertMessage = "Something"
+//                    self.alertToggle.toggle()
                     
                 }
                 

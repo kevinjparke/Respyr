@@ -13,10 +13,16 @@ extension View {
             .mask(self)
     }
     
-//    public func gradient1() -> some View {
-//        self.overlay(LinearGradient(gradient: Gradient(colors: [Color.gradient1Color1, Color.gradient1Color2]), startPoint: .topLeading, endPoint: .bottomTrailing))
-//            .mask(self)
-//    }
+    public func glassBackground() -> some View {
+        self.background(
+                RoundedRectangle(cornerRadius: 30)
+                    .stroke(Color.white.opacity(0.5), lineWidth: 1).blendMode(.overlay)
+                    .background(Color.themeBackground.opacity(0.2))
+                    .background(VisualEffectBlur(blurStyle: .systemThinMaterial))
+                    .shadow(color: Color.black.opacity(0.2), radius: 60, x: 0, y: 30)
+            )
+            .cornerRadius(30)
+    }
 }
 
 extension Color {
@@ -26,4 +32,6 @@ extension Color {
     static public var textFieldBackground = Color("textFieldBackground")
     static public var themeRed = Color("themeRed")
     static public var themeForeground = Color("foreground")
+    static public var onboardingColor1 = Color("OnboardingColor1")
+    static public var onboardingColor2 = Color("OnboardingColor2")
 }

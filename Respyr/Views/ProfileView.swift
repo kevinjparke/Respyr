@@ -1,153 +1,180 @@
 //
-//  ProfileView.swift
+//  test_ProfileView.swift
 //  Respyr
 //
-//  Created by Kevin Parke on 10/6/21.
+//  Created by Kevin Parke on 11/27/21.
 //
 
 import SwiftUI
-import CoreData
-import FirebaseAuth
 
 struct ProfileView: View {
-    //Environment variables
+    @State private var universalSearch: String = ""
+    @State private var selection: String = "home"
+    @State private var showSetupView: Bool = false
+    
     @EnvironmentObject var userViewModel: UserViewModel
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     @Environment(\.presentationMode) var presentationMode
     
-    //Core Data
-    @State private var currentAccount: UserAccount?
     
-    //View states
-    @State private var showSettingsView: Bool  = false
+    
+    private let gradient = Gradient(colors: [Color.gradient1Color1, Color.gradient1Color2])
     
     var body: some View {
-        
         NavigationView {
-            ZStack {
-                Color.themeBackground
-                    .edgesIgnoringSafeArea(.all)
-                
-                Image("Background3")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .edgesIgnoringSafeArea(.all)
-                
-                VStack(spacing: 20) {
-                    VStack(alignment: .leading, spacing: 16) {
-                        VStack(alignment: .leading, spacing: 16) {
-                            HStack(spacing: 16) {
-                                
-                                if userViewModel.profileImage != nil {
-                                    Image(uiImage: userViewModel.profileImage!)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 52, height: 52, alignment: .center)
-                                        .clipShape(Circle())
-                                        .overlay(
-                                            Circle()
-                                                .stroke(Color.white, lineWidth: 3)
-                                                .blendMode(.overlay)
-                                        )
-                                } else {
-                                    Image(systemName: "person.circle.fill")
-                                        .font(.system(size: 52, weight: .medium))
-                                }
-                                
-                                VStack(alignment: .leading){
-                                    Text(userViewModel.fullName.count < 1 ? "No name" : userViewModel.fullName)
-                                        .font(.title2).bold()
-                                    
-                                    Text(userViewModel.userTitle)
-                                        .font(.footnote)
-                                        .opacity(0.7)
-                                        .lineLimit(2)
-                                }
-                                
-                                Spacer()
-                                
-                                Button(action: {
-                                    self.showSettingsView.toggle()
-                                }) {
-                                    Image(systemName: "gearshape.fill")
-                                        .font(.system(size: 25))
-                                        .foregroundColor(Color.primary)
-                                }
-                                .frame(maxHeight: 66, alignment: .top)
-                            }
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack {
+                    HStack(spacing: 8) {
+                        Spacer()
+                        NavigationLink(destination: Text("Edit View")) {
+                            SecondaryButton2(iconName: "magnifyingglass")
                         }
                         
-                        SecondaryButton(text: "Sign out") {
-                            self.userViewModel.signOut()
-                            DispatchQueue.main.async {
+                        NavigationLink(destination: SettingsView()) {
+                            SecondaryButton2(iconName: "slider.horizontal.3")
+                        }
+                    }
+                    .padding(.horizontal)
+                    .font(.system(size: 36))
+                    .foregroundColor(.primary)
+                    
+                    VStack(spacing: 20) {
+                                            
+                        //Profile Header
+                        VStack(spacing: 16) {
+                            ProfilePictureView(profilePicture: self.userViewModel.profileImage)
+                                .frame(height: 90)
+                                .colorScheme(.light)
+                                
+                            
+                            //Name and membership date
+                            VStack(spacing: 4){
+                                Text(self.getUserName())
+                                    .font(.title).bold()
+                                
+                                Text("Member since: January, 2018")
+                                    .font(.caption)
+                                    .opacity(0.7)
+                            }
+                        }
+                                            
+                        VStack(spacing: 16) {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Certificates")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Text("Upload your official certificates")
+                                    .font(.caption2.bold())
+                                    .foregroundColor(.primary.opacity(0.7))
+                            }
+                            .padding(.horizontal)
+                            
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 20) {
+                                    if userViewModel.certifications.isEmpty {
+                                        CertificateCardView(isArrayEmpty: true)
+                                    }
+                                    ForEach(userViewModel.certifications, id: \.self) {cert in
+                                        NavigationLink(destination: CertificationDetailView(certification: cert)) {
+                                            CertificateCardView(certificate: cert)
+                                                .frame(width: 280, alignment: .leading)
+                                        }
+                                    }
+                                }
+                                .padding([.bottom, .top],  32)
+                                .padding([.leading, .trailing], 20)
+                                .padding(.top, 16)
 
-                                self.presentationMode.wrappedValue.dismiss()
                             }
-                        }
-                        
-                    }
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 30, style: .continuous)
-                            .stroke(Color.white.opacity(0.5), lineWidth: 1).blendMode(.overlay)
-                            .background(Color.themeBackground.opacity(0.2))
-                            .background(VisualEffectBlur(blurStyle: .systemThinMaterial))
-                            .shadow(color: Color.black.opacity(0.2), radius: 60, x: 0, y: 30)
-                    )
-                    .cornerRadius(30)
-                    
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text("My Training Centers")
-                            .font(.title2).bold()
-                        
-                        //Find training center button
-                        NavigationLink(destination: FindTrainingCenterView()) {
-                            Text("Find training center")
-                                .font(.body).bold()
-                                .foregroundColor(.white)
+                                                
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Training Centers")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Text("Find a training center near you to start learning")
+                                    .font(.caption2.bold())
+                                    .foregroundColor(.primary.opacity(0.7))
+                            }
+                            .padding(.horizontal)
+                                                
+                            VStack {
+//                                ForEach(test_trainingCenters.indices) { i in
+//                                    if test_trainingCenters.first! {
+//                                        TrainingCenterListRow(trainingCenter: test_trainingCenter[i], isFirstIndex: true, currentUserID: userViewModel.currentUserID)
+//                                    }
+//
+//                                }
+                                
+                                
+                                //Find training center button
+                                NavigationLink(destination: FindTrainingCenterView()) {
+                                    Text("Find training center")
+                                        .font(.body).bold()
+                                        .foregroundColor(.white)
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                }
                                 .frame(maxWidth: .infinity, alignment: .center)
+                                .frame(height: 52)
+                                .background(LinearGradient(gradient: Gradient(colors: [Color.gradient1Color2, Color.gradient1Color1]), startPoint: .top, endPoint: .bottom))
+                                .overlay(RoundedRectangle(cornerRadius: 16.0, style: .continuous)
+                                            .stroke(Color.white, lineWidth: 3)
+                                            .blendMode(.overlay)
+                                )
+                                .cornerRadius(16.0)
+                                .padding()
+                                .shadow(color: Color.black.opacity(0.25), radius: 40, x: 0, y: 20)
+                            }
+                            .background(
+                                RoundedRectangle(cornerRadius: 30)
+                                    .stroke(Color.white.opacity(0.5), lineWidth: 1).blendMode(.overlay)
+                                    .background(Color.primary.opacity(0.1))
+                                    .cornerRadius(30)
+                            )
+                            .padding()
                         }
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .frame(height: 52)
-                        .background(LinearGradient(gradient: Gradient(colors: [Color.gradient1Color2, Color.gradient1Color1]), startPoint: .top, endPoint: .bottom))
-                        .overlay(RoundedRectangle(cornerRadius: 16.0, style: .continuous)
-                                    .stroke(Color.white, lineWidth: 3)
-                                    .blendMode(.overlay)
-                        )
-                        .cornerRadius(16.0)
-                        .shadow(color: Color.black.opacity(0.25), radius: 40, x: 0, y: 20)
                     }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(
-                        RoundedRectangle(cornerRadius: 30, style: .continuous)
-                            .stroke(Color.white.opacity(0.5), lineWidth: 1).blendMode(.overlay)
-                            .background(Color.themeBackground.opacity(0.5))
-                            .background(VisualEffectBlur(blurStyle: .systemThinMaterial))
-                            .shadow(color: Color.black.opacity(0.5), radius: 60, x: 0, y: 30)
-                    )
-                    .cornerRadius(30)
-                    
-                    Spacer()
-                    
                 }
-                .padding(.horizontal)
                 .padding(.top, 60)
-                .onAppear {
-                    userViewModel.test_fetchUser()
-                    userViewModel.test_fetchAllUsers()
-                }
+                .background(
+                    Image(colorScheme == .dark ? "Background3" : "Background4")
+                        .resizable()
+                        .edgesIgnoringSafeArea(.all)
+                )
             }
-            .sheet(isPresented: $showSettingsView) {
-                SettingsView()
+            .background(Color.themeBackground.edgesIgnoringSafeArea(.all))
+            .edgesIgnoringSafeArea(.all)
+            .navigationBarHidden(true)
+            .navigationViewStyle(StackNavigationViewStyle())
+            .navigationBarTitle(Text("Profile"))
+            .fullScreenCover(isPresented: self.$userViewModel.showOnboardingView) {
+                OnboardingScreen()
+            }
         }
+        .accentColor(Color.themeForeground)
+    }
+    
+    private func getUserName() -> String {
+        if userViewModel.firstName.isEmpty && userViewModel.lastName.isEmpty {
+            return userViewModel.authRef.currentUser?.displayName ?? ""
+        } else {
+            return "\(userViewModel.firstName) \(userViewModel.lastName)"
         }
-//        .preferredColorScheme(.dark)
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
-//            .preferredColorScheme(.dark)
+        Group {
+            ProfileView()
+                .preferredColorScheme(.dark)
+            
+            ProfileView()
+//                    .preferredColorScheme(.dark)
+        }
     }
 }

@@ -12,27 +12,31 @@ import CoreData
 import Combine
 
 class UserViewModel: ObservableObject {
-    
+    //TODO: - COMPLETELY OVERHAUL THIS SHIT!
     //User document attributes
     @Published var firstName: String = ""
     @Published var lastName: String = ""
     @Published var profileImage: UIImage?
-    @Published var fullName: String = ""
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var instructorID: String = ""
     @Published var memberSince: String = ""
-    @Published var trainingCenters: [String] = []
-    @Published var sessionIDs: [String] = []
+    @Published var lastSignedIn: String = ""
     @Published var sentRequests: [String] = []
-    @Published var sentInstructorRequest: [String] = []
-    @Published var adminTC: [String] = []
-    @Published var instructorTC: [String] = []
+    @Published var trainingCenters: [String] = []
     @Published var sessionReservations: [String] = []
-    @Published var checklists: [String] = []
+    @Published var userDocument: User?
+    
+    //View Publishers
+    @Published var dismissOnboardingScreen: Bool = false
+    @Published var showOnboardingView: Bool = false
+    
+    //Publishers for nested collection
+    @Published var userCertificationViewModel = CertificationViewModel()
+    @Published var certifications: [Certification] = []
     
     //Firebase
-    @Published var isSignedIn: Bool = false
+//    @Published var isSignedIn: Bool = false
     @Published var currentUserID: String = ""
     public var authRef = Auth.auth()
     private var db = FirebaseFirestore.Firestore.firestore()
@@ -42,71 +46,40 @@ class UserViewModel: ObservableObject {
     @Published var alertMessage: String = ""
     @Published var alertToggle: Bool = false
     
-    //Instantiated in fetchUser()
-    @Published var userDocument: User?
-    @Published var allUsers: [User] = []
-    @Published var singleFetchUser: User?
+    //Dependency Injection
+    var sessionStore: SessionStore
     
-    //Test properties
-    @Published var sentStudentRequest: [String] = ""
-    @Published var asentInstructorRequests: [String] = ""
-    @Published var lastSignedIn: String = ""
-    
-    var sessionStore = SessionStore()
+    //Cancel bag
     private var cancelables = Set<AnyCancellable>()
     
-    public var userTitle: String {
-        if !instructorTC.isEmpty {
-            return "Instructor at"
-        } else if !trainingCenters.isEmpty{
-            return "Student at"
-        }
-        return "No affiliated training centers yet"
-    }
-    
-    init() {
-        self.listen()
-    }
-    
-    func listen() {
-        authRef.addStateDidChangeListener { auth, user in
-            if user != nil {
-                self.isSignedIn = true
-                self.currentUserID = auth.currentUser?.uid ?? ""
-            } else {
-                self.isSignedIn = false
+    init(sessionStore: SessionStore) {
+        self.sessionStore = sessionStore
+        self.sessionStore.$user
+            .sink { user in
+                if let user = user {
+                    var userDoc = user
+                    userDoc.lastSignedIn = self.updateUserLastSignIn()
+                    self.userDocument = userDoc
+                    self.populateFields(user: userDoc)
+                    self.showOnboarding(firstName: userDoc.firstName, lastName: userDoc.lastName)
+                    self.fetchUserCertifications()
+                }
             }
-        }
+            .store(in: &cancelables)
+        
+        self.sessionStore.$userCertificates
+            .sink { cert in
+                self.certifications = cert
+            }
+            .store(in: &cancelables)
     }
     
     func signIn() {
-        //Automatically sign in once there is a user found in Core Data?
-        //How will we handle multiple users using the same app?
-        
-        self.authRef.signIn(withEmail: email, password: password) { auth, error in
-            guard error == nil else {
-                self.alertTitle = "Uh-oh!"
-                self.alertMessage = error?.localizedDescription ?? ""
-                self.alertToggle.toggle()
-                return
-            }
-            self.currentUserID = auth?.user.uid ?? ""
-            self.test_fetchUser()
-        }
+        self.sessionStore.signIn(email: email, password: password)
     }
     
     func signUp() {
-        self.authRef.createUser(withEmail: self.email, password: self.password) { result, error in
-            guard error == nil else {
-                self.alertTitle = "Sign up error"
-                self.alertMessage = error?.localizedDescription ?? "Unknown error"
-                self.alertToggle.toggle()
-                
-                return
-            }
-            self.currentUserID = result?.user.uid ?? ""
-            self.createUser()
-        }
+        self.sessionStore.signUp(email: email, password: password)
     }
     
     func signOut() {
@@ -116,6 +89,49 @@ class UserViewModel: ObservableObject {
             self.alertTitle = "Error signing out"
             self.alertMessage = error.localizedDescription
             self.alertToggle.toggle()
+        }
+    }
+    
+    func updateUserEmail(email: String) {
+        self.sessionStore.authRef.currentUser?.updateEmail(to: email) { error in
+            if error != nil {
+                self.alertTitle = "Error updating email"
+                self.alertMessage = error?.localizedDescription ?? ""
+                self.alertToggle.toggle()
+            } else  {
+                self.alertTitle = "Success"
+                self.alertMessage = "Your email address was successfully updated"
+                self.alertToggle.toggle()
+            }
+        }
+    }
+    
+    func reauthenticateUser(oldPassword: String, newPassword: String) {
+        let credential: AuthCredential = EmailAuthProvider.credential(withEmail: self.email, password: oldPassword)
+        self.sessionStore.authRef.currentUser?.reauthenticate(with: credential, completion: { auth, error in
+            if let error = error {
+                // An error happened.
+                self.alertTitle = "Something went wrong"
+                self.alertMessage = error.localizedDescription
+                self.alertToggle.toggle()
+              } else {
+                // User re-authenticated.
+                  self.updatePassword(newPassword: newPassword)
+              }
+        })
+    }
+    
+    func updatePassword(newPassword: String) {
+        self.sessionStore.authRef.currentUser?.updatePassword(to: newPassword) { error in
+            if error != nil {
+                self.alertTitle = "Error updating password"
+                self.alertMessage = error?.localizedDescription ?? ""
+                self.alertToggle.toggle()
+            } else {
+                self.alertTitle = "Success"
+                self.alertMessage = "Your pasword was successfully changed"
+                self.alertToggle.toggle()
+            }
         }
     }
     
@@ -134,26 +150,12 @@ class UserViewModel: ObservableObject {
         }
     }
     
-    func createUser() {
-        self.userDocument = User (userID: self.currentUserID, fullName: fullName, email: email, instructorID: instructorID, memberSince: memberSince, sessionIDs: trainingCenters, trainingCenters: sessionIDs, sentRequests: sentRequests, sentInstructorRequest: sentInstructorRequest, adminTC: adminTC, instructorTC: instructorTC, sessionReservations: sessionReservations, checklists: checklists)
-        
-        do {
-            let _ =  try self.db.collection("users").document(authRef.currentUser?.uid ?? "").setData(from: userDocument)
-            
-            //Add user to core data here?
-            
-        } catch let error {
-            self.alertTitle = "Trouble adding user details"
-            self.alertMessage = error.localizedDescription
-            self.alertToggle.toggle()
-        }
-    }
-    
+    //TODO: - Update user document instead of creating an entire user to pass
     func updateUser() {
-        let updatedUser = User(userID: self.currentUserID, fullName: fullName, email: email, instructorID: instructorID, memberSince: memberSince, sessionIDs: sessionIDs, trainingCenters: trainingCenters, sentRequests: sentRequests, sentInstructorRequest: sentInstructorRequest, adminTC: adminTC, instructorTC: instructorTC, sessionReservations: sessionReservations, checklists: checklists)
+        let updatedUser = User(id: currentUserID, firstName: firstName, lastName: lastName, email: email, instructorID: instructorID, memberSince: memberSince, lastSignedIn: lastSignedIn, sentRequests: sentRequests, trainingCenters: trainingCenters, sessionReservations: sessionReservations)
         
         do {
-            let _ = try self.db.collection("users").document(authRef.currentUser?.uid ?? "").setData(from: updatedUser)
+            let _ = try self.db.collection("users").document(currentUserID).setData(from: updatedUser)
         } catch let error {
             self.alertTitle = "Error updating user"
             self.alertMessage = error.localizedDescription
@@ -161,101 +163,25 @@ class UserViewModel: ObservableObject {
         }
     }
     
-    func test_fetchAllUsers() {
-        sessionStore.$users
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                print(completion)
-            } receiveValue: { users in
-                self.allUsers = users
-            }
-            .store(in: &cancelables)
+    private func populateFields(user: User) {
+        self.currentUserID = user.id ?? ""
+        self.firstName = user.firstName
+        self.lastName = user.lastName
+        self.email = user.email
+        self.instructorID = user.instructorID
+        self.memberSince = user.memberSince
+        self.lastSignedIn = user.lastSignedIn
+        self.trainingCenters = user.trainingCenters
+        self.sentRequests = user.sentRequests
+        self.sessionReservations = user.sessionReservations
     }
     
-    func test_fetchUser() {
-        self.sessionStore.fetchUser(with: currentUserID)
-        sessionStore.$user
-            .receive(on: DispatchQueue.main)
-            .sink {completion in
-                print("completion")
-            } receiveValue: { user in
-                self.userDocument = user
-                if let user = user {
-                    self.fullName = user.fullName
-                    self.email = user.email
-                    self.instructorID = user.instructorID
-                    self.memberSince = user.memberSince
-                    self.trainingCenters = user.trainingCenters
-                    self.sentRequests = user.sentRequests
-                    self.sentInstructorRequest = user.sentInstructorRequest
-                    self.adminTC = user.adminTC
-                    self.instructorTC = user.instructorTC
-                    self.sessionReservations = user.sessionReservations
-                    self.checklists = user.checklists
-                }
-            }
-            .store(in: &cancelables)
-    }
-    
-    func fetchUser() {
-        let docRef = self.db.collection("users").document(authRef.currentUser!.uid )
-        docRef.addSnapshotListener { (document, err) in
-            let result = Result{
-                try? document?.data(as: User.self)
-            }
-            
-            switch result {
-            case .success(let user):
-                self.userDocument = user
-                if let user = user {
-                    self.fullName = user.fullName
-                    self.email = user.email
-                    self.instructorID = user.instructorID
-                    self.memberSince = user.memberSince
-                    self.trainingCenters = user.trainingCenters
-                    self.sentRequests = user.sentRequests
-                    self.sentInstructorRequest = user.sentInstructorRequest
-                    self.adminTC = user.adminTC
-                    self.instructorTC = user.instructorTC
-                    self.sessionReservations = user.sessionReservations
-                    self.checklists = user.checklists
-                } else {
-                    print("Couldn't fetch user")
-                }
-            case .failure(let error):
-                self.alertTitle = "Trouble fetching user"
-                self.alertMessage = error.localizedDescription
-                self.alertToggle.toggle()
-            }
-        }
-    }
-    
-    func fetchAllUsers() {
-        self.db.collection("users").addSnapshotListener { snapshot, error in
-            if error != nil {
-                //TODO: Handle error
-            }
-            
-            //Update UI on main thread
-            DispatchQueue.main.async {
-                if let snapshot = snapshot {
-                    self.allUsers = snapshot.documents.map { document in
-                        User(userID: document.documentID,
-                            fullName: document["fullName"] as? String ?? "",
-                            email: document["email"] as? String ?? "",
-                            instructorID: document["instructorID"] as? String ?? "",
-                            memberSince: document["memberSince"] as? String ?? "",
-                            sessionIDs: document["sessionIDs"] as? [String] ?? [],
-                            trainingCenters: document["trainingCenters"] as? [String] ?? [],
-                            sentRequests: document["sentRequests"] as? [String] ?? [],
-                            sentInstructorRequest: document["sentInstructorRequest"] as? [String] ?? [],
-                            adminTC: document["adminTC"] as? [String] ?? [],
-                            instructorTC: document["instructorTC"] as? [String] ?? [],
-                            sessionReservations: document["sessionReservations"] as? [String] ?? [],
-                            checklists: document["checklists"] as? [String] ?? [])
-                    }
-                }
-            }
+    func showOnboarding(firstName: String, lastName: String){
+        //A user is fully register when there is a firstName, lastName, and email address filled out in their user document
+        if firstName.isEmpty || lastName.isEmpty {
+            self.showOnboardingView = true
+        } else {
+            self.showOnboardingView = false
         }
     }
     
@@ -263,13 +189,37 @@ class UserViewModel: ObservableObject {
         
     }
     
-    func generateArray(of values: [String]) -> [String] {
-        var arrayValues = [String]()
-        for value in values {
-            arrayValues.append(value)
-        }
+    func updateUserLastSignIn() -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMM y"
         
-        return arrayValues
+        let now = Date()
+        return formatter.string(from: now)
+    }
+}
+
+//MARK: - Update Certifications
+extension UserViewModel {
+    func fetchUserCertifications() {
+        self.userCertificationViewModel.fetchUserCertifications(userID: currentUserID)
+    }
+    
+    func updateUserCertification(certification: Certification) {
+        self.sessionStore.updateUserCertification(userCertification: certification)
+    }
+}
+
+//MARK: - Validation checks
+extension UserViewModel {
+    func isEmpty(_field:String) -> Bool {
+        return _field.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+    
+    func isSignupComplete() -> Bool {
+        if isEmpty(_field: self.firstName) || isEmpty(_field: self.lastName) {
+            return false
+        }
+        return true
     }
 }
 
@@ -296,18 +246,18 @@ extension UserViewModel {
 
 //MARK: - Tests
 extension UserViewModel {
-    func test_createUser() {
-        let test = test_User(id: self.currentUserID, fullName: self.fullName, email: self.email, instructorID: self.instructorID, memberSince: self.memberSince, lastSignedIn: self.lastSignedIn, studentRequest: self.sentStudentRequest, instructorRequest: self.sentInstructorRequest, instructorTrainingCenters: self.instructorTC, studentTrainingCenters: self.trainingCenters, sessionReservations: self.sessionReservations)
-        
-        do {
-            let _ =  try self.db.collection("users").document(authRef.currentUser?.uid ?? "").setData(from: test)
-            
-            //Add user to core data here?
-            
-        } catch let error {
-            self.alertTitle = "Trouble adding user details"
-            self.alertMessage = error.localizedDescription
-            self.alertToggle.toggle()
-        }
-    }
+//    func test_createUser() {
+//        let test = test_User(id: self.currentUserID, fullName: self.fullName, email: self.email, instructorID: self.instructorID, memberSince: self.memberSince, lastSignedIn: self.lastSignedIn, studentRequest: self.sentStudentRequest, instructorRequest: self.sentInstructorRequest, instructorTrainingCenters: self.instructorTC, studentTrainingCenters: self.trainingCenters, sessionReservations: self.sessionReservations)
+//
+//        do {
+//            let _ =  try self.db.collection("users").document(authRef.currentUser?.uid ?? "").setData(from: test)
+//
+//            //Add user to core data here?
+//
+//        } catch let error {
+//            self.alertTitle = "Trouble adding user details"
+//            self.alertMessage = error.localizedDescription
+//            self.alertToggle.toggle()
+//        }
+//    }
 }

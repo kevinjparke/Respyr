@@ -21,7 +21,7 @@ struct MainGradientButtonView: View {
         .frame(maxWidth: .infinity, alignment: .center)
         .frame(height: 52)
         .background(LinearGradient(gradient: Gradient(colors: [Color.gradient1Color2, Color.gradient1Color1]), startPoint: .top, endPoint: .bottom))
-        .overlay(RoundedRectangle(cornerRadius: 16.0, style: .continuous)
+        .overlay(RoundedRectangle(cornerRadius: 16.0)
                     .stroke(Color.white, lineWidth: 3)
                     .blendMode(.overlay)
         )
