@@ -12,7 +12,6 @@ import CoreData
 import Combine
 
 class UserViewModel: ObservableObject {
-    //TODO: - COMPLETELY OVERHAUL THIS SHIT!
     //User document attributes
     @Published var firstName: String = ""
     @Published var lastName: String = ""
